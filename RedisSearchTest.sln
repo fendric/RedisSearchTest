@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35913.81 d17.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RedisSearch", "RedisSearch\RedisSearch.csproj", "{DEBF63CC-659A-4BA4-B32A-D4857585CDE0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RedisSearchLib", "RedisSearchLib\RedisSearchLib.csproj", "{057FE68C-8318-4677-9838-B19B7E483FD1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RedisSearchOM", "RedisSearchOM\RedisSearchOM.csproj", "{1C959291-F46A-4EDC-829D-F8CFD471E9BC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DEBF63CC-659A-4BA4-B32A-D4857585CDE0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DEBF63CC-659A-4BA4-B32A-D4857585CDE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DEBF63CC-659A-4BA4-B32A-D4857585CDE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DEBF63CC-659A-4BA4-B32A-D4857585CDE0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{057FE68C-8318-4677-9838-B19B7E483FD1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{057FE68C-8318-4677-9838-B19B7E483FD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{057FE68C-8318-4677-9838-B19B7E483FD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{057FE68C-8318-4677-9838-B19B7E483FD1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1C959291-F46A-4EDC-829D-F8CFD471E9BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C959291-F46A-4EDC-829D-F8CFD471E9BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C959291-F46A-4EDC-829D-F8CFD471E9BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C959291-F46A-4EDC-829D-F8CFD471E9BC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BFC57B1C-97BB-4562-9C98-242A1EAF5809}
+	EndGlobalSection
+EndGlobal
