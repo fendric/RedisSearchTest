@@ -24,12 +24,18 @@ namespace RedisSearchOM
 
         public async Task<IList<BaseProductDTO>> SearchProductsAsync(string keywords)
         {
-            return await _products.Where(x => x.Published && !x.Deleted && (x.Name == keywords || x.ShortDescription == keywords || x.FullDescription == keywords || x.Tags == keywords)).ToListAsync();
+            return await _products.Where(x => x.Published && !x.Deleted && 
+                (
+                    x.Name.Contains(keywords) || 
+                    x.ShortDescription.Contains(keywords) || 
+                    x.FullDescription.Contains(keywords) || 
+                    x.Tags.Contains(keywords))
+                ).ToListAsync();
         }
 
         public async Task<IList<TemplateDTO>> SearchTemplatesAsync(string keywords)
         {
-            return await _templates.Where(x => x.Published && !x.Deleted && (x.Name == keywords || x.Tags == keywords)).ToListAsync();
+            return await _templates.Where(x => x.Published && !x.Deleted && (x.Name.Contains(keywords) || x.Tags.Contains(keywords))).ToListAsync();
         }
     }
 }

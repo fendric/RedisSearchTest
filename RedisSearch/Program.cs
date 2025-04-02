@@ -44,7 +44,9 @@ var searcher = services.BuildServiceProvider().GetService<ISearcher>();
 
 
 await RunScenarioAsync(searcher!, "congratulations");
+await RunScenarioAsync(searcher!, "banner");
 await RunScenarioAsync(searcher!, "congratulations banner");
+await RunScenarioAsync(searcher!, "frame");
 await RunScenarioAsync(searcher!, "congratulations frame");
 
 Console.WriteLine("=========");
@@ -56,7 +58,9 @@ await idxCreationService!.StartAsync();
 var omSearcher = services.BuildServiceProvider().GetService<IOmSearcher>();
 
 await RunOmScenarioAsync(omSearcher!, "congratulations");
+await RunOmScenarioAsync(omSearcher!, "banner");
 await RunOmScenarioAsync(omSearcher!, "congratulations banner");
+await RunOmScenarioAsync(omSearcher!, "frame");
 await RunOmScenarioAsync(omSearcher!, "congratulations frame");
 
 Console.WriteLine("\r\n========================");
