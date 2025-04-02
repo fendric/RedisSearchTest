@@ -37,8 +37,10 @@ Console.WriteLine("NRedisStack:");
 Console.WriteLine("============\r\n");
 
 var indexer = services.BuildServiceProvider().GetService<IIndexer>();
-await indexer!.CreateProductIndexAsync(Constants.ProductIndexName, Constants.ProductKeyPrefix);
-await indexer!.CreateTemplateIndexAsync(Constants.TemplateIndexName, Constants.TemplateKeyPrefix);
+var success = await indexer!.CreateProductIndexAsync(Constants.ProductIndexName, Constants.ProductKeyPrefix);
+Console.WriteLine($"Product index created: {success}");
+success = await indexer!.CreateTemplateIndexAsync(Constants.TemplateIndexName, Constants.TemplateKeyPrefix);
+Console.WriteLine($"Template index created: {success}");
 
 var searcher = services.BuildServiceProvider().GetService<ISearcher>();
 

@@ -8,8 +8,8 @@ namespace RedisSearchLib
 {
     public interface IIndexer
     {
-        Task CreateProductIndexAsync(string indexName, string keyPrefix);
-        Task CreateTemplateIndexAsync(string indexName, string keyPrefix);
+        Task<bool> CreateProductIndexAsync(string indexName, string keyPrefix);
+        Task<bool> CreateTemplateIndexAsync(string indexName, string keyPrefix);
     }
 
     public class Indexer : IIndexer
@@ -21,11 +21,11 @@ namespace RedisSearchLib
             this.db = db;
         }
 
-        public async Task CreateProductIndexAsync(string indexName, string keyPrefix)
+        public async Task<bool> CreateProductIndexAsync(string indexName, string keyPrefix)
         {
             SearchCommands ft = db.FT();
             try { await ft.DropIndexAsync(indexName); } catch { }
-            await ft.CreateAsync(indexName, new FTCreateParams().On(IndexDataType.JSON).Prefix($"{keyPrefix}:"),
+            return await ft.CreateAsync(indexName, new FTCreateParams().On(IndexDataType.JSON).Prefix($"{keyPrefix}"),
                 new Schema().AddNumericField(new FieldName("$.Id", "Id"))
                             .AddTextField(new FieldName("$.Name", "Name"))
                             .AddTextField(new FieldName("$.ShortDescription", "ShortDescription"))
@@ -44,11 +44,11 @@ namespace RedisSearchLib
                             .AddTagField(new FieldName("$.Specs", "Specs"))
                 );
         }
-        public async Task CreateTemplateIndexAsync(string indexName, string keyPrefix)
+        public async Task<bool> CreateTemplateIndexAsync(string indexName, string keyPrefix)
         {
             SearchCommands ft = db.FT();
             try { await ft.DropIndexAsync(indexName); } catch { }
-            await ft.CreateAsync(indexName, new FTCreateParams().On(IndexDataType.JSON).Prefix($"{keyPrefix}:"),
+            return await ft.CreateAsync(indexName, new FTCreateParams().On(IndexDataType.JSON).Prefix($"{keyPrefix}"),
                 new Schema().AddNumericField(new FieldName("$.Id", "Id"))
                             .AddTextField(new FieldName("$.Name", "Name"))
                             .AddTagField(new FieldName("$.Published", "Published"))
