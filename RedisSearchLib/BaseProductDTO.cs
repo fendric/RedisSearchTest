@@ -2,10 +2,8 @@
 
 namespace RedisSearchLib
 {
-    public record BaseProductDTO
+    public record BaseProductDTO : BaseDTO
     {
-        [JsonProperty]
-        public int Id { get; set; }
         [JsonProperty]
         public required string Name { get; set; }
         [JsonProperty]

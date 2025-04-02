@@ -1,8 +1,7 @@
 ﻿namespace RedisSearchLib
 {
-    public record TemplateDTO
+    public record TemplateDTO : BaseDTO
     {
-        public int Id { get; set; }
         public required string Name { get; set; }
         public bool LimitedToStores { get; set; }
         public required int[] AvailableForStoreIds { get; set; }

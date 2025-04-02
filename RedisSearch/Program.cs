@@ -8,7 +8,7 @@ using StackExchange.Redis;
 
 var services = new ServiceCollection();
 //for NRedisStack
-services.AddScoped<IDataLoader, DataLoader>();
+services.AddScoped<IDataLoader,DataLoader>();
 services.AddScoped<IIndexer, Indexer>();
 services.AddScoped<ISearcher, Searcher>();
 services.AddScoped(cfg =>
@@ -24,8 +24,8 @@ services.AddSingleton(new RedisConnectionProvider(new RedisConnectionConfigurati
 /*
  * Only run the first time*/
 //var dataLoader = services.BuildServiceProvider().GetService<IDataLoader>();
-//await dataLoader!.LoadJsonAsync("products","products.json");
-//await dataLoader!.LoadJsonAsync("templates", "templates.json");
+//await dataLoader!.LoadJsonAsync<RedisSearchLib.BaseProductDTO>(Constants.ProductKeyPrefix, "products.json");
+//await dataLoader!.LoadJsonAsync<RedisSearchLib.TemplateDTO>(Constants.TemplateKeyPrefix, "templates.json");
 
 //var omdataLoader = services.BuildServiceProvider().GetService<IOmDataLoader>();
 //await omdataLoader!.LoadProductsJsonAsync("products.json");
