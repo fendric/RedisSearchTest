@@ -24,6 +24,10 @@ namespace RedisSearchOM
 
         public async Task<IList<BaseProductDTO>> SearchProductsAsync(string keywords)
         {
+            if (!string.IsNullOrEmpty(keywords))
+            {
+                keywords = keywords.Replace(' ', '|');   //use an OR separator. Default is to use AND.
+            }
             return await _products.Where(x => x.Published && !x.Deleted && 
                 (
                     x.Name.Contains(keywords) || 
@@ -35,6 +39,10 @@ namespace RedisSearchOM
 
         public async Task<IList<TemplateDTO>> SearchTemplatesAsync(string keywords)
         {
+            if (!string.IsNullOrEmpty(keywords))
+            {
+                keywords = keywords.Replace(' ', '|');   //use an OR separator. Default is to use AND.
+            }
             return await _templates.Where(x => x.Published && !x.Deleted && (x.Name.Contains(keywords) || x.Tags.Contains(keywords))).ToListAsync();
         }
     }

@@ -22,14 +22,22 @@ namespace RedisSearchLib
 
         public async Task<SearchResult?> SearchTemplatesAsync(string keywords)
         {
+            if(!string.IsNullOrEmpty(keywords))
+            {
+                keywords = keywords.Replace(' ','|');   //use an OR separator. Default is to use AND.
+            }
             SearchCommands ft = db.FT();
-            var result = await ft.SearchAsync(Constants.TemplateIndexName, new Query($"@Name:({keywords}) @ShortDescription:({keywords}) @FullDescription:({keywords}) @Categories:({keywords}) @Tags:({keywords})"));
+            var result = await ft.SearchAsync(Constants.TemplateIndexName, new Query($"{keywords}"));   //by default all text fields are searched
             return result;
         }
         public async Task<SearchResult?> SearchProductsAsync(string keywords)
         {
+            if (!string.IsNullOrEmpty(keywords))
+            {
+                keywords = keywords.Replace(' ', '|');   //use an OR separator. Default is to use AND.
+            }
             SearchCommands ft = db.FT();
-            var result = await ft.SearchAsync(Constants.ProductIndexName, new Query($"@Name:({keywords}) @Tags:({keywords})"));
+            var result = await ft.SearchAsync(Constants.ProductIndexName, new Query($"{keywords}"));    //by default all text fields are searched
             return result;
         }
     }
