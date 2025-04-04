@@ -25,7 +25,7 @@ namespace RedisSearchLib
         {
             SearchCommands ft = db.FT();
             try { await ft.DropIndexAsync(indexName); } catch { }
-            return await ft.CreateAsync(indexName, new FTCreateParams().On(IndexDataType.JSON).Prefix($"{keyPrefix}"),
+            return await ft.CreateAsync(indexName, new FTCreateParams().On(IndexDataType.JSON).Prefix($"{keyPrefix}:"),
                 new Schema().AddNumericField(new FieldName("$.Id", "Id"))
                             .AddTextField(new FieldName("$.Name", "Name"))
                             .AddTextField(new FieldName("$.ShortDescription", "ShortDescription"))
@@ -40,15 +40,15 @@ namespace RedisSearchLib
                             .AddTagField(new FieldName("$.ProductTemplate", "ProductTemplate"))
                             .AddNumericField(new FieldName("$.Popularity", "Popularity"))
                             .AddTextField(new FieldName("$.Tags", "Tags"))
-                            .AddTagField(new FieldName("$.AvailableForStoreIds", "AvailableForStoreIds"))
-                            .AddTagField(new FieldName("$.Specs", "Specs"))
+                            //.AddTagField(new FieldName("$.AvailableForStoreIds", "AvailableForStoreIds"))
+                            //.AddTagField(new FieldName("$.Specs", "Specs"))
                 );
         }
         public async Task<bool> CreateTemplateIndexAsync(string indexName, string keyPrefix)
         {
             SearchCommands ft = db.FT();
             try { await ft.DropIndexAsync(indexName); } catch { }
-            return await ft.CreateAsync(indexName, new FTCreateParams().On(IndexDataType.JSON).Prefix($"{keyPrefix}"),
+            return await ft.CreateAsync(indexName, new FTCreateParams().On(IndexDataType.JSON).Prefix($"{keyPrefix}:"),
                 new Schema().AddNumericField(new FieldName("$.Id", "Id"))
                             .AddTextField(new FieldName("$.Name", "Name"))
                             .AddTagField(new FieldName("$.Published", "Published"))
@@ -58,7 +58,7 @@ namespace RedisSearchLib
                             .AddTagField(new FieldName("$.BaseProductId", "BaseProductId"))
                             .AddTagField(new FieldName("$.ChildProductId", "ChildProductId"))
                             .AddTextField(new FieldName("$.Tags", "Tags"))
-                            .AddTagField(new FieldName("$.SpecificationAttributes", "SpecificationAttributes"))
+                            //.AddTagField(new FieldName("$.SpecificationAttributes", "SpecificationAttributes"))
                 );
         }
     }
