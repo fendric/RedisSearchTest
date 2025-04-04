@@ -46,11 +46,17 @@ Console.WriteLine($"Template index created: {success}");
 var searcher = services.BuildServiceProvider().GetService<ISearcher>();
 
 
-await RunScenarioAsync(searcher!, "congratulations");
-await RunScenarioAsync(searcher!, "banner");
-await RunScenarioAsync(searcher!, "congratulations banner");
-await RunScenarioAsync(searcher!, "frame");
-await RunScenarioAsync(searcher!, "congratulations frame");
+await RunScenarioAsync(searcher!, "congratulations");           //should find templates with congratulations and congrats (synonyms)
+await RunScenarioAsync(searcher!, "banner");                    //should find templates with banner and products with banner
+await RunScenarioAsync(searcher!, "congratulations banner");    //should find templates with congratulations and/or banner; should find products with banner
+await RunScenarioAsync(searcher!, "frame");                     //should find products with frame
+await RunScenarioAsync(searcher!, "congratulations frame");     //should find templates with banner and products with frame
+await RunScenarioAsync(searcher!, "congrats");                  //should find templates with congrats or congratulations
+await RunScenarioAsync(searcher!, "congrat");                   //should find templates with congrats or congratulations
+await RunScenarioAsync(searcher!, "bnner");                     //should find templates and products with banner
+await RunScenarioAsync(searcher!, "bannr");                     //should find templates and products with banner
+await RunScenarioAsync(searcher!, "bannor");                    //should find templates and products with banner
+await RunScenarioAsync(searcher!, "congartulatons");            //should find templates with congratulations and congrats (synonyms)
 
 Console.WriteLine("=========");
 Console.WriteLine("Redis.OM:");
@@ -60,11 +66,17 @@ var idxCreationService = services.BuildServiceProvider().GetService<IIndexCreati
 await idxCreationService!.StartAsync();
 var omSearcher = services.BuildServiceProvider().GetService<IOmSearcher>();
 
-await RunOmScenarioAsync(omSearcher!, "congratulations");
-await RunOmScenarioAsync(omSearcher!, "banner");
-await RunOmScenarioAsync(omSearcher!, "congratulations banner");
-await RunOmScenarioAsync(omSearcher!, "frame");
-await RunOmScenarioAsync(omSearcher!, "congratulations frame");
+await RunOmScenarioAsync(omSearcher!, "congratulations");           //should find templates with congratulations and congrats (synonyms)
+await RunOmScenarioAsync(omSearcher!, "banner");                    //should find templates with banner and products with banner
+await RunOmScenarioAsync(omSearcher!, "congratulations banner");    //should find templates with congratulations and/or banner; should find products with banner
+await RunOmScenarioAsync(omSearcher!, "frame");                     //should find products with frame
+await RunOmScenarioAsync(omSearcher!, "congratulations frame");     //should find templates with banner and products with frame
+await RunOmScenarioAsync(omSearcher!, "congrats");                  //should find templates with congrats or congratulations
+await RunOmScenarioAsync(omSearcher!, "congrat");                   //should find templates with congrats or congratulations
+await RunOmScenarioAsync(omSearcher!, "bnner");                     //should find templates and products with banner
+await RunOmScenarioAsync(omSearcher!, "bannr");                     //should find templates and products with banner
+await RunOmScenarioAsync(omSearcher!, "bannor");                    //should find templates and products with banner
+await RunOmScenarioAsync(omSearcher!, "congartulatons");            //should find templates with congratulations and congrats (synonyms)
 
 Console.WriteLine("\r\n========================");
 Console.WriteLine("Press any key to exit...");
