@@ -1,6 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
 using Microsoft.Extensions.DependencyInjection;
+using Newtonsoft.Json;
 using Redis.OM;
 using RedisSearchLib;
 using RedisSearchOM;
@@ -74,9 +75,14 @@ static void DisplayResults(string keywords, NRedisStack.Search.SearchResult? pro
     if (products != null)
     {
         Console.WriteLine($"Found {products.TotalResults} products matching '{keywords}'");
-        foreach (var doc in products.Documents)
+        if (products.Documents.Count > 0)
         {
-            Console.WriteLine($" - {doc["$.Name"]}");
+            var results = products.ToJson();
+            foreach (var doc in results)
+            {
+                var product = JsonConvert.DeserializeObject<RedisSearchLib.BaseProductDTO>(doc);
+                Console.WriteLine($" - {product!.Name}");
+            }
         }
     }
     else
@@ -87,9 +93,14 @@ static void DisplayResults(string keywords, NRedisStack.Search.SearchResult? pro
     if (templates != null)
     {
         Console.WriteLine($"Found {templates.TotalResults} templates matching '{keywords}'");
-        foreach (var doc in templates.Documents)
+        if(templates.Documents.Count > 0)
         {
-            Console.WriteLine($" - {doc["$.Name"]}");
+            var results = templates.ToJson();
+            foreach (var doc in results)
+            {
+                var template = JsonConvert.DeserializeObject<RedisSearchLib.TemplateDTO>(doc);
+                Console.WriteLine($" - {template!.Name}");
+            }
         }
     }
     else
