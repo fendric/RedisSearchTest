@@ -57,6 +57,7 @@ await RunScenarioAsync(searcher!, "bnner");                     //should find te
 await RunScenarioAsync(searcher!, "bannr");                     //should find templates and products with banner
 await RunScenarioAsync(searcher!, "bannor");                    //should find templates and products with banner
 await RunScenarioAsync(searcher!, "congartulatons");            //should find templates with congratulations and congrats (synonyms)
+await RunScenarioAsync(searcher!, "roomier box");               //should find products with roomier and box
 
 Console.WriteLine("=========");
 Console.WriteLine("Redis.OM:");
@@ -77,6 +78,7 @@ await RunOmScenarioAsync(omSearcher!, "bnner");                     //should fin
 await RunOmScenarioAsync(omSearcher!, "bannr");                     //should find templates and products with banner
 await RunOmScenarioAsync(omSearcher!, "bannor");                    //should find templates and products with banner
 await RunOmScenarioAsync(omSearcher!, "congartulatons");            //should find templates with congratulations and congrats (synonyms)
+await RunOmScenarioAsync(omSearcher!, "roomier box");               //should find products with roomier and box
 
 Console.WriteLine("\r\n========================");
 Console.WriteLine("Press any key to exit...");
